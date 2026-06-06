@@ -68,6 +68,41 @@
   --shadow-card: 0 6px 24px -10px oklch(0.5 0.08 20 / 0.14);
 }
 
+/* === Modo Nocturno Azul === */
+.theme-night {
+  --background: oklch(0.18 0.04 260);
+  --foreground: oklch(0.95 0.02 240);
+  --card: oklch(0.24 0.05 260);
+  --card-foreground: oklch(0.95 0.02 240);
+  --popover: oklch(0.24 0.05 260);
+  --popover-foreground: oklch(0.95 0.02 240);
+  --primary: oklch(0.72 0.16 240);
+  --primary-foreground: oklch(0.15 0.04 260);
+  --secondary: oklch(0.3 0.05 255);
+  --secondary-foreground: oklch(0.95 0.02 240);
+  --muted: oklch(0.28 0.04 258);
+  --muted-foreground: oklch(0.72 0.04 245);
+  --accent: oklch(0.35 0.08 250);
+  --accent-foreground: oklch(0.95 0.02 240);
+  --destructive: oklch(0.65 0.2 25);
+  --destructive-foreground: oklch(0.99 0.005 80);
+  --border: oklch(0.35 0.05 255 / 0.6);
+  --input: oklch(0.3 0.05 255);
+  --ring: oklch(0.7 0.14 240);
+
+  --cherry: oklch(0.72 0.16 240);
+  --blush: oklch(0.32 0.06 255);
+  --cream: oklch(0.22 0.04 260);
+
+  --gradient-romance: linear-gradient(160deg, oklch(0.16 0.05 265) 0%, oklch(0.22 0.08 245) 100%);
+  --shadow-soft: 0 10px 40px -15px oklch(0.55 0.18 240 / 0.45);
+  --shadow-card: 0 6px 24px -10px oklch(0.1 0.05 260 / 0.6);
+}
+
+html, body, .card-floating, .tap-scale, [class*="bg-"], [class*="text-"], [class*="border-"] {
+  transition: background-color 0.5s ease, color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+}
+
 @layer base {
   * {
     border-color: var(--color-border);
@@ -206,6 +241,17 @@
     oklch(0.97 0.025 40),
     oklch(0.94 0.035 15),
     oklch(0.96 0.03 35)
+  );
+  background-size: 400% 400%;
+  animation: gradient-shift 18s ease infinite;
+}
+.theme-night .animated-bg {
+  background: linear-gradient(135deg,
+    oklch(0.18 0.06 265),
+    oklch(0.22 0.1 245),
+    oklch(0.2 0.08 255),
+    oklch(0.24 0.12 235),
+    oklch(0.19 0.07 260)
   );
   background-size: 400% 400%;
   animation: gradient-shift 18s ease infinite;

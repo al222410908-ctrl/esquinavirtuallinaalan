@@ -4,6 +4,7 @@ import { MapPin, Music2, Heart } from "lucide-react";
 import couplePhoto from "@/assets/couple.jpg";
 import { SundayPlan } from "@/components/SundayPlan";
 import { AnimatedBackground } from "@/components/AnimatedBackground";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 // ============================================================
 // 💖 EDITA AQUÍ TU FECHA DE ANIVERSARIO (YYYY-MM-DD)
@@ -60,6 +61,7 @@ function Index() {
   return (
     <>
       <AnimatedBackground />
+      <ThemeToggle />
       <main className="relative mx-auto max-w-md px-5 pt-10 pb-16 space-y-8">
         {/* HEADER */}
         <header className="text-center">
