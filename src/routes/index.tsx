@@ -1,30 +1,30 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { MapPin, Music2, Heart } from "lucide-react";
-import couplePhoto from "@/assets/couple.jpg";
+import couplePhoto from "@/assets/linayalan.jpeg";
 import { SundayPlan } from "@/components/SundayPlan";
 import { AnimatedBackground } from "@/components/AnimatedBackground";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import { AndaleLinaGame } from "@/components/AndaleLinaGame";
 
 // ============================================================
 // 💖 EDITA AQUÍ TU FECHA DE ANIVERSARIO (YYYY-MM-DD)
 // ============================================================
-const ANNIVERSARY_DATE = "2023-02-14";
+const ANNIVERSARY_DATE = "2025-05-15";
 // 📍 Y EL ENLACE DE GOOGLE MAPS DE NUESTRO RINCÓN
-const MAP_URL = "https://www.google.com/maps";
+const MAP_URL = "https://maps.app.goo.gl/eHkTKfoDuWmcNBGe9";
 // ============================================================
 
-type Song = { title: string; artist: string; url: string };
+type Song = { title: string; artist: string; youtubeId: string };
 
 const SONGS_FOR_HER: Song[] = [
-  { title: "Perfect", artist: "Ed Sheeran", url: "https://open.spotify.com/search/Perfect%20Ed%20Sheeran" },
-  { title: "All of Me", artist: "John Legend", url: "https://open.spotify.com/search/All%20of%20Me%20John%20Legend" },
-  { title: "Tu Sonrisa", artist: "Elvis Crespo", url: "https://open.spotify.com/search/Tu%20Sonrisa" },
+  { title: "Bobomensototnto", artist: "NSQK", youtubeId: "pUc8QR1U3jM" },
+  { title: "Eres Arte", artist: "Eslabon Armado", youtubeId: "Y2nc4ndviIE" },
+  { title: "Reina Pepiada", artist: "Álvaro Díaz", youtubeId: "Zn37zIBGv5M" },
 ];
 
 const SONGS_FOR_HIM: Song[] = [
-  { title: "Adore You", artist: "Harry Styles", url: "https://open.spotify.com/search/Adore%20You%20Harry%20Styles" },
-  { title: "Photograph", artist: "Ed Sheeran", url: "https://open.spotify.com/search/Photograph%20Ed%20Sheeran" },
+  { title: "Cielo Eterno", artist: "DannyLux", youtubeId: "s0mrFXGtSbM" },
 ];
 
 export const Route = createFileRoute("/")({
@@ -95,7 +95,7 @@ function Index() {
           >
             <Heart size={14} className="text-primary fill-primary animate-heartbeat" />
             <p className="text-sm text-foreground">
-              Progresando juntos desde hace{" "}
+              Días aguantándonos desde hace{" "}
               <span className="font-semibold text-primary">{days}</span> días
             </p>
           </div>
@@ -139,6 +139,11 @@ function Index() {
           <SundayPlan />
         </div>
 
+        {/* ANDALE LINA GAME */}
+        <div className="animate-fade-up" style={{ animationDelay: "0.65s" }}>
+          <AndaleLinaGame />
+        </div>
+
         <footer className="text-center text-xs text-muted-foreground pt-4 animate-fade-up" style={{ animationDelay: "0.7s" }}>
           Hecho con <Heart size={12} className="inline fill-primary text-primary animate-heartbeat" /> solo para nosotros
         </footer>
@@ -163,35 +168,37 @@ function PlaylistColumn({
         <span>{title}</span>
         <Equalizer />
       </p>
-      <ul className="space-y-2">
+      <ul className="space-y-3">
         {songs.map((s, idx) => (
           <li
             key={s.title}
             className="animate-fade-up"
             style={{ animationDelay: `${0.1 * idx + 0.1}s` }}
           >
-            <a
-              href={s.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="tap-scale group flex items-center gap-3 rounded-xl bg-secondary/60 hover:bg-secondary px-3 py-2.5 transition-colors"
-            >
-              <span className="relative w-9 h-9 rounded-lg bg-primary/10 text-primary flex items-center justify-center shrink-0 overflow-hidden">
-                <Music2 size={15} className="group-hover:scale-110 transition-transform" />
-                <span
-                  className="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity"
-                  style={{
-                    background:
-                      "radial-gradient(circle at center, oklch(0.68 0.14 18 / 0.25), transparent 70%)",
-                  }}
+            <div className="rounded-xl bg-secondary/60 p-3 transition-colors">
+              <div className="flex items-center gap-3 mb-2">
+                <span className="relative w-9 h-9 rounded-lg bg-primary/10 text-primary flex items-center justify-center shrink-0 overflow-hidden">
+                  <Music2 size={15} />
+                </span>
+                <span className="min-w-0 flex-1">
+                  <span className="block text-sm font-medium truncate">{s.title}</span>
+                  <span className="block text-xs text-muted-foreground truncate">{s.artist}</span>
+                </span>
+                <Equalizer compact />
+              </div>
+              <div className="aspect-video rounded-lg overflow-hidden">
+                <iframe
+                  width="100%"
+                  height="100%"
+                  src={`https://www.youtube.com/embed/${s.youtubeId}`}
+                  title={s.title}
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  className="w-full h-full"
                 />
-              </span>
-              <span className="min-w-0 flex-1">
-                <span className="block text-sm font-medium truncate">{s.title}</span>
-                <span className="block text-xs text-muted-foreground truncate">{s.artist}</span>
-              </span>
-              <Equalizer compact />
-            </a>
+              </div>
+            </div>
           </li>
         ))}
       </ul>

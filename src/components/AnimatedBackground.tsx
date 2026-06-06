@@ -15,43 +15,47 @@ import { Heart, Star } from "lucide-react";
  */
 export function AnimatedBackground() {
   const risingHearts = [
-    { left: "5%", dur: "18s", delay: "0s", size: 14, dx: "30px", op: 0.45 },
-    { left: "18%", dur: "24s", delay: "3s", size: 10, dx: "-40px", op: 0.35 },
-    { left: "32%", dur: "20s", delay: "7s", size: 18, dx: "25px", op: 0.5 },
-    { left: "48%", dur: "26s", delay: "1.5s", size: 12, dx: "-30px", op: 0.4 },
-    { left: "62%", dur: "22s", delay: "10s", size: 16, dx: "35px", op: 0.45 },
-    { left: "76%", dur: "19s", delay: "5s", size: 11, dx: "-25px", op: 0.38 },
-    { left: "88%", dur: "23s", delay: "8s", size: 14, dx: "30px", op: 0.42 },
-    { left: "12%", dur: "28s", delay: "12s", size: 9, dx: "-20px", op: 0.3 },
-    { left: "55%", dur: "21s", delay: "14s", size: 13, dx: "20px", op: 0.4 },
+    { left: "5%", dur: "14s", delay: "0s", size: 16, dx: "30px", op: 0.55 },
+    { left: "18%", dur: "18s", delay: "2s", size: 12, dx: "-40px", op: 0.45 },
+    { left: "32%", dur: "16s", delay: "4s", size: 20, dx: "25px", op: 0.6 },
+    { left: "48%", dur: "20s", delay: "1s", size: 14, dx: "-30px", op: 0.5 },
+    { left: "62%", dur: "17s", delay: "6s", size: 18, dx: "35px", op: 0.55 },
+    { left: "76%", dur: "15s", delay: "3s", size: 13, dx: "-25px", op: 0.48 },
+    { left: "88%", dur: "19s", delay: "5s", size: 16, dx: "30px", op: 0.52 },
+    { left: "12%", dur: "22s", delay: "8s", size: 11, dx: "-20px", op: 0.4 },
+    { left: "55%", dur: "16s", delay: "10s", size: 15, dx: "20px", op: 0.5 },
+    { left: "40%", dur: "18s", delay: "12s", size: 14, dx: "-15px", op: 0.45 },
   ];
 
   const risingStars = [
-    { left: "10%", dur: "32s", delay: "2s", size: 10, dx: "40px", op: 0.5 },
-    { left: "42%", dur: "28s", delay: "6s", size: 8, dx: "-35px", op: 0.45 },
-    { left: "70%", dur: "30s", delay: "11s", size: 12, dx: "25px", op: 0.55 },
-    { left: "85%", dur: "26s", delay: "4s", size: 9, dx: "-30px", op: 0.4 },
+    { left: "10%", dur: "24s", delay: "2s", size: 12, dx: "40px", op: 0.6 },
+    { left: "42%", dur: "22s", delay: "6s", size: 10, dx: "-35px", op: 0.55 },
+    { left: "70%", dur: "26s", delay: "11s", size: 14, dx: "25px", op: 0.65 },
+    { left: "85%", dur: "20s", delay: "4s", size: 11, dx: "-30px", op: 0.5 },
+    { left: "25%", dur: "28s", delay: "8s", size: 9, dx: "20px", op: 0.45 },
+    { left: "60%", dur: "23s", delay: "14s", size: 13, dx: "-25px", op: 0.55 },
   ];
 
   const diagonalDots = [
-    { dur: "35s", delay: "0s", top: "20%", size: 6, op: 0.4 },
-    { dur: "42s", delay: "8s", top: "55%", size: 4, op: 0.35 },
-    { dur: "38s", delay: "15s", top: "75%", size: 8, op: 0.45 },
-    { dur: "30s", delay: "22s", top: "35%", size: 5, op: 0.3 },
+    { dur: "28s", delay: "0s", top: "20%", size: 7, op: 0.5 },
+    { dur: "32s", delay: "5s", top: "55%", size: 5, op: 0.45 },
+    { dur: "30s", delay: "10s", top: "75%", size: 9, op: 0.55 },
+    { dur: "25s", delay: "15s", top: "35%", size: 6, op: 0.4 },
+    { dur: "35s", delay: "20s", top: "45%", size: 8, op: 0.48 },
   ];
 
-  const sparkles = Array.from({ length: 10 }).map((_, i) => ({
-    top: `${(i * 9 + 8) % 95}%`,
-    left: `${(i * 23 + 12) % 92}%`,
-    delay: `${(i * 0.4) % 4}s`,
-    size: 3 + (i % 4),
+  const sparkles = Array.from({ length: 18 }).map((_, i) => ({
+    top: `${(i * 7 + 5) % 95}%`,
+    left: `${(i * 19 + 8) % 92}%`,
+    delay: `${(i * 0.3) % 4}s`,
+    size: 3 + (i % 5),
   }));
 
-  const twinkleStars = Array.from({ length: 14 }).map((_, i) => ({
-    top: `${(i * 7 + 5) % 95}%`,
-    left: `${(i * 17 + 8) % 95}%`,
-    delay: `${(i * 0.3) % 3}s`,
-    size: 2 + (i % 3),
+  const twinkleStars = Array.from({ length: 20 }).map((_, i) => ({
+    top: `${(i * 5 + 3) % 95}%`,
+    left: `${(i * 13 + 6) % 95}%`,
+    delay: `${(i * 0.25) % 3}s`,
+    size: 2 + (i % 4),
   }));
 
   return (
@@ -61,23 +65,23 @@ export function AnimatedBackground() {
     >
       {/* === Soft color blobs === */}
       <div
-        className="blob absolute -top-32 -left-24 w-[300px] h-[300px] rounded-full opacity-70 blur-3xl"
+        className="blob absolute -top-32 -left-24 w-[350px] h-[350px] rounded-full opacity-80 blur-3xl"
         style={{ background: "radial-gradient(circle, oklch(0.85 0.1 20), transparent 70%)" }}
       />
       <div
-        className="blob absolute top-1/4 -right-32 w-[320px] h-[320px] rounded-full opacity-60 blur-3xl"
+        className="blob absolute top-1/4 -right-32 w-[380px] h-[380px] rounded-full opacity-75 blur-3xl"
         style={{ background: "radial-gradient(circle, oklch(0.88 0.07 40), transparent 70%)", animationDelay: "-5s" }}
       />
       <div
-        className="blob absolute top-1/2 left-1/3 w-[260px] h-[260px] rounded-full opacity-55 blur-3xl"
+        className="blob absolute top-1/2 left-1/3 w-[320px] h-[320px] rounded-full opacity-70 blur-3xl"
         style={{ background: "radial-gradient(circle, oklch(0.84 0.09 350), transparent 70%)", animationDelay: "-9s" }}
       />
       <div
-        className="blob absolute bottom-0 -left-20 w-[340px] h-[340px] rounded-full opacity-60 blur-3xl"
+        className="blob absolute bottom-0 -left-20 w-[400px] h-[400px] rounded-full opacity-75 blur-3xl"
         style={{ background: "radial-gradient(circle, oklch(0.86 0.08 10), transparent 70%)", animationDelay: "-12s" }}
       />
       <div
-        className="blob absolute -bottom-32 right-0 w-[300px] h-[300px] rounded-full opacity-65 blur-3xl"
+        className="blob absolute -bottom-32 right-0 w-[360px] h-[360px] rounded-full opacity-78 blur-3xl"
         style={{ background: "radial-gradient(circle, oklch(0.87 0.07 30), transparent 70%)", animationDelay: "-7s" }}
       />
 
@@ -132,11 +136,21 @@ export function AnimatedBackground() {
 
       {/* === Dot grid texture === */}
       <div
-        className="absolute inset-0 opacity-[0.18]"
+        className="absolute inset-0 opacity-[0.25]"
         style={{
           backgroundImage:
-            "radial-gradient(oklch(0.68 0.14 18 / 0.5) 1px, transparent 1px)",
-          backgroundSize: "22px 22px",
+            "radial-gradient(oklch(0.68 0.14 18 / 0.6) 1.5px, transparent 1.5px)",
+          backgroundSize: "28px 28px",
+        }}
+      />
+
+      {/* === Additional pattern overlay === */}
+      <div
+        className="absolute inset-0 opacity-[0.15]"
+        style={{
+          backgroundImage:
+            "radial-gradient(circle at 20% 30%, oklch(0.92 0.04 25 / 0.3) 0%, transparent 50%), radial-gradient(circle at 80% 70%, oklch(0.88 0.06 35 / 0.3) 0%, transparent 50%)",
+          backgroundSize: "100% 100%",
         }}
       />
 
@@ -176,6 +190,26 @@ export function AnimatedBackground() {
       <div
         className="float absolute top-[90%] right-[22%] w-6 h-6 rounded-2xl opacity-45"
         style={{ background: "oklch(0.84 0.09 40 / 0.6)", animationDelay: "-6s" }}
+      />
+      <div
+        className="float absolute top-[15%] right-[25%] w-8 h-8 rounded-full opacity-48"
+        style={{ background: "linear-gradient(135deg, oklch(0.92 0.05 30), oklch(0.86 0.1 20))", animationDelay: "-7s" }}
+      />
+      <div
+        className="float absolute top-[55%] left-[5%] w-7 h-7 rounded-xl opacity-52"
+        style={{ background: "oklch(0.88 0.07 35 / 0.6)", animationDelay: "-8s" }}
+      />
+      <div
+        className="float absolute top-[75%] right-[15%] w-5 h-5 opacity-46"
+        style={{
+          background: "oklch(0.9 0.08 25 / 0.55)",
+          clipPath: "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)",
+          animationDelay: "-9s",
+        }}
+      />
+      <div
+        className="float absolute top-[40%] right-[30%] w-6 h-6 rounded-lg opacity-50"
+        style={{ background: "oklch(0.84 0.09 40 / 0.6)", animationDelay: "-10s" }}
       />
 
       {/* === Rising hearts loop === */}

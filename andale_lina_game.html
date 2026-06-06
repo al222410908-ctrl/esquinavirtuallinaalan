@@ -1,0 +1,230 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>ándale Lina</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            touch-action: manipulation;
+            user-select: none;
+        }
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: #000;
+            color: #fff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            height: 100vh;
+            overflow: hidden;
+            text-align: center;
+        }
+        .header {
+            margin-bottom: 10px;
+            z-index: 5;
+        }
+        h1 {
+            margin: 0;
+            color: #ff4d6d;
+            font-size: 2.8rem;
+            text-shadow: 0 0 10px rgba(255, 77, 109, 0.5);
+        }
+        .sub {
+            font-size: 1rem;
+            color: #ffb3c1;
+            margin-top: 5px;
+            font-style: italic;
+        }
+        
+        #game-area {
+            width: 95vw;
+            height: 60vh;
+            background-color: #0a0a0a;
+            border: 3px solid #ff4d6d;
+            border-radius: 25px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: inset 0 0 30px rgba(255, 77, 109, 0.2), 0 0 20px rgba(0,0,0,0.5);
+        }
+
+        .target {
+            position: absolute;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid #fff;
+            box-shadow: 0 0 15px rgba(255,255,255,0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            animation: popIn 0.15s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        @keyframes popIn {
+            from { transform: scale(0); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .stats {
+            margin-top: 20px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #ff4d6d;
+        }
+
+        #game-over {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.95);
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+            padding: 20px;
+        }
+
+        #game-over h2 {
+            font-size: 3rem;
+            color: #ff4d6d;
+            margin-bottom: 10px;
+        }
+
+        #game-over p {
+            font-size: 1.4rem;
+            margin-bottom: 30px;
+            color: #ffb3c1;
+        }
+
+        button {
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            background: linear-gradient(45deg, #ff4d6d, #c9184a);
+            border: none;
+            color: white;
+            border-radius: 50px;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(255, 77, 109, 0.4);
+        }
+
+        button:active {
+            transform: scale(0.95);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>ándale Lina</h1>
+        <p class="sub">pierde para q digas q si</p>
+    </div>
+
+    <div id="game-area">
+        <div id="game-over">
+            <h2>¡PERDISTE!</h2>
+            <p>Ya sabes lo que toca... ❤️</p>
+            <button onclick="startGame()">Reintentar</button>
+        </div>
+    </div>
+
+    <div class="stats">
+        Puntos: <span id="score">0</span>
+    </div>
+
+    <script>
+        const gameArea = document.getElementById('game-area');
+        const scoreDisplay = document.getElementById('score');
+        const gameOverScreen = document.getElementById('game-over');
+        
+        let score = 0;
+        let gameActive = false;
+        let spawnTimeout;
+
+        function startGame() {
+            score = 0;
+            gameActive = true;
+            scoreDisplay.innerText = score;
+            gameOverScreen.style.display = 'none';
+            
+            // Limpiar todo antes de empezar
+            document.querySelectorAll('.target').forEach(t => t.remove());
+            
+            mainLoop();
+        }
+
+        function mainLoop() {
+            if (!gameActive) return;
+
+            // DIFICULTAD DINÁMICA: 
+            // Cada 7 puntos sale un círculo extra simultáneo
+            const maxSimultaneous = Math.floor(score / 7) + 1;
+            const currentOnScreen = document.querySelectorAll('.target').length;
+
+            if (currentOnScreen < maxSimultaneous) {
+                createTarget();
+            }
+
+            // El tiempo entre apariciones baja rápido para forzar el error
+            let nextSpawn = Math.max(250, 900 - (score * 25));
+            spawnTimeout = setTimeout(mainLoop, nextSpawn);
+        }
+
+        function createTarget() {
+            const target = document.createElement('div');
+            target.className = 'target';
+            
+            // Se hacen más pequeños para que sea difícil atinarle
+            const size = Math.max(30, 75 - (score * 0.8));
+            target.style.width = size + 'px';
+            target.style.height = size + 'px';
+            
+            const maxX = gameArea.clientWidth - size - 10;
+            const maxY = gameArea.clientHeight - size - 10;
+            
+            target.style.left = Math.max(5, Math.floor(Math.random() * maxX)) + 'px';
+            target.style.top = Math.max(5, Math.floor(Math.random() * maxY)) + 'px';
+            
+            // Colores tipo "amor"
+            const colors = ['#ff4d6d', '#ff758f', '#ff8fa3', '#c9184a', '#800f2f'];
+            target.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+
+            // Tiempo de vida: Al principio duran mucho, luego nada
+            const lifeTime = Math.max(450, 1800 - (score * 40));
+            
+            const failTimer = setTimeout(() => {
+                if (target.parentNode) {
+                    endGame();
+                }
+            }, lifeTime);
+
+            // Funciona en clic y en touch para celular
+            const handleTouch = (e) => {
+                e.preventDefault();
+                score++;
+                scoreDisplay.innerText = score;
+                clearTimeout(failTimer);
+                target.remove();
+            };
+
+            target.addEventListener('touchstart', handleTouch);
+            target.addEventListener('mousedown', handleTouch);
+
+            gameArea.appendChild(target);
+        }
+
+        function endGame() {
+            gameActive = false;
+            clearTimeout(spawnTimeout);
+            gameOverScreen.style.display = 'flex';
+        }
+
+        // Iniciar automáticamente
+        startGame();
+    </script>
+</body>
+</html>

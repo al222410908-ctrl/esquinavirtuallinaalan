@@ -177,11 +177,11 @@ html, body, .card-floating, .tap-scale, [class*="bg-"], [class*="text-"], [class
 
 @keyframes blob-move {
   0%, 100% { transform: translate(0, 0) scale(1); }
-  25% { transform: translate(35px, -25px) scale(1.12); }
-  50% { transform: translate(-20px, 30px) scale(0.92); }
-  75% { transform: translate(25px, 15px) scale(1.05); }
+  25% { transform: translate(45px, -35px) scale(1.15); }
+  50% { transform: translate(-30px, 40px) scale(0.9); }
+  75% { transform: translate(35px, 20px) scale(1.1); }
 }
-.blob { animation: blob-move 16s ease-in-out infinite; }
+.blob { animation: blob-move 12s ease-in-out infinite; }
 
 @keyframes drift-up {
   0% { transform: translateY(110vh) translateX(0) rotate(0); opacity: 0; }
@@ -232,7 +232,9 @@ html, body, .card-floating, .tap-scale, [class*="bg-"], [class*="text-"], [class
 
 @keyframes gradient-shift {
   0%, 100% { background-position: 0% 50%; }
+  25% { background-position: 50% 100%; }
   50% { background-position: 100% 50%; }
+  75% { background-position: 50% 0%; }
 }
 .animated-bg {
   background: linear-gradient(135deg,
@@ -240,10 +242,12 @@ html, body, .card-floating, .tap-scale, [class*="bg-"], [class*="text-"], [class
     oklch(0.95 0.03 25),
     oklch(0.97 0.025 40),
     oklch(0.94 0.035 15),
-    oklch(0.96 0.03 35)
+    oklch(0.96 0.03 35),
+    oklch(0.93 0.04 20),
+    oklch(0.98 0.02 60)
   );
-  background-size: 400% 400%;
-  animation: gradient-shift 18s ease infinite;
+  background-size: 600% 600%;
+  animation: gradient-shift 12s ease infinite;
 }
 .theme-night .animated-bg {
   background: linear-gradient(135deg,
@@ -251,10 +255,12 @@ html, body, .card-floating, .tap-scale, [class*="bg-"], [class*="text-"], [class
     oklch(0.22 0.1 245),
     oklch(0.2 0.08 255),
     oklch(0.24 0.12 235),
-    oklch(0.19 0.07 260)
+    oklch(0.19 0.07 260),
+    oklch(0.21 0.09 250),
+    oklch(0.17 0.05 270)
   );
-  background-size: 400% 400%;
-  animation: gradient-shift 18s ease infinite;
+  background-size: 600% 600%;
+  animation: gradient-shift 12s ease infinite;
 }
 
 @keyframes wave-slide {
