@@ -39,20 +39,19 @@
 
 :root {
   --radius: 1.25rem;
-  /* Pastel romantic palette */
-  --background: oklch(0.985 0.008 70);          /* warm cream/white */
-  --foreground: oklch(0.32 0.04 20);             /* soft warm brown */
+  --background: oklch(0.985 0.008 70);
+  --foreground: oklch(0.32 0.04 20);
   --card: oklch(0.995 0.005 80);
   --card-foreground: oklch(0.32 0.04 20);
   --popover: oklch(0.995 0.005 80);
   --popover-foreground: oklch(0.32 0.04 20);
-  --primary: oklch(0.68 0.14 18);                /* muted cherry */
+  --primary: oklch(0.68 0.14 18);
   --primary-foreground: oklch(0.99 0.005 80);
-  --secondary: oklch(0.94 0.02 30);              /* soft blush */
+  --secondary: oklch(0.94 0.02 30);
   --secondary-foreground: oklch(0.35 0.06 20);
   --muted: oklch(0.95 0.015 60);
   --muted-foreground: oklch(0.5 0.03 25);
-  --accent: oklch(0.9 0.04 25);                  /* dusty rose */
+  --accent: oklch(0.9 0.04 25);
   --accent-foreground: oklch(0.32 0.06 20);
   --destructive: oklch(0.6 0.2 25);
   --destructive-foreground: oklch(0.99 0.005 80);
@@ -64,9 +63,9 @@
   --blush: oklch(0.92 0.035 20);
   --cream: oklch(0.97 0.015 75);
 
-  --gradient-romance: linear-gradient(160deg, oklch(0.98 0.012 70) 0%, oklch(0.94 0.03 20) 100%);
-  --shadow-soft: 0 10px 40px -15px oklch(0.68 0.14 18 / 0.18);
-  --shadow-card: 0 6px 24px -10px oklch(0.5 0.08 20 / 0.12);
+  --gradient-romance: linear-gradient(160deg, oklch(0.985 0.012 70) 0%, oklch(0.94 0.035 20) 100%);
+  --shadow-soft: 0 10px 40px -15px oklch(0.68 0.14 18 / 0.22);
+  --shadow-card: 0 6px 24px -10px oklch(0.5 0.08 20 / 0.14);
 }
 
 @layer base {
@@ -80,6 +79,7 @@
     color: var(--color-foreground);
     font-family: var(--font-sans);
     -webkit-tap-highlight-color: transparent;
+    overflow-x: hidden;
   }
 
   h1, h2, h3 {
@@ -89,21 +89,113 @@
 }
 
 @utility card-floating {
-  background: var(--color-card);
+  background: color-mix(in oklab, var(--color-card) 85%, transparent);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border-radius: var(--radius-2xl);
   box-shadow: var(--shadow-card);
   border: 1px solid color-mix(in oklab, var(--color-border) 70%, transparent);
 }
 
 @utility tap-scale {
-  transition: transform 0.15s ease, box-shadow 0.25s ease;
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s ease, background-color 0.2s ease;
 }
 .tap-scale:active {
-  transform: scale(0.97);
+  transform: scale(0.96);
 }
 
+/* ============ ANIMATIONS ============ */
+
 @keyframes fade-up {
-  from { opacity: 0; transform: translateY(12px); }
+  from { opacity: 0; transform: translateY(16px); }
   to { opacity: 1; transform: translateY(0); }
 }
-.animate-fade-up { animation: fade-up 0.6s ease-out both; }
+.animate-fade-up { animation: fade-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) both; }
+
+@keyframes pop-in {
+  0% { opacity: 0; transform: scale(0.85); }
+  60% { opacity: 1; transform: scale(1.04); }
+  100% { transform: scale(1); }
+}
+.animate-pop { animation: pop-in 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) both; }
+
+@keyframes float-y {
+  0%, 100% { transform: translateY(0) rotate(var(--r, 0deg)); }
+  50% { transform: translateY(-14px) rotate(calc(var(--r, 0deg) + 4deg)); }
+}
+.float { animation: float-y 6s ease-in-out infinite; }
+
+@keyframes heart-beat {
+  0%, 100% { transform: scale(1); }
+  15% { transform: scale(1.18); }
+  30% { transform: scale(1); }
+  45% { transform: scale(1.12); }
+  60% { transform: scale(1); }
+}
+.animate-heartbeat { animation: heart-beat 2.4s ease-in-out infinite; }
+
+@keyframes ring-pulse {
+  0% { box-shadow: 0 0 0 0 oklch(0.68 0.14 18 / 0.45); }
+  100% { box-shadow: 0 0 0 22px oklch(0.68 0.14 18 / 0); }
+}
+.animate-ring { animation: ring-pulse 2.2s ease-out infinite; }
+
+@keyframes blob-move {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(20px, -30px) scale(1.08); }
+  66% { transform: translate(-25px, 20px) scale(0.95); }
+}
+.blob { animation: blob-move 18s ease-in-out infinite; }
+
+@keyframes drift-up {
+  0% { transform: translateY(100vh) translateX(0) rotate(0); opacity: 0; }
+  10% { opacity: 0.7; }
+  90% { opacity: 0.7; }
+  100% { transform: translateY(-12vh) translateX(var(--dx, 30px)) rotate(360deg); opacity: 0; }
+}
+.drift { animation: drift-up var(--dur, 18s) linear infinite; }
+
+@keyframes sparkle {
+  0%, 100% { opacity: 0; transform: scale(0.5) rotate(0); }
+  50% { opacity: 1; transform: scale(1) rotate(180deg); }
+}
+.sparkle { animation: sparkle 4s ease-in-out infinite; }
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+.shimmer-text {
+  background: linear-gradient(
+    90deg,
+    var(--foreground) 0%,
+    var(--primary) 45%,
+    var(--foreground) 90%
+  );
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shimmer 5s linear infinite;
+}
+
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+.animated-bg {
+  background: linear-gradient(135deg,
+    oklch(0.985 0.012 70),
+    oklch(0.95 0.03 25),
+    oklch(0.97 0.025 40),
+    oklch(0.94 0.035 15)
+  );
+  background-size: 300% 300%;
+  animation: gradient-shift 22s ease infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .float, .blob, .drift, .sparkle, .animate-heartbeat, .animate-ring, .shimmer-text, .animated-bg {
+    animation: none !important;
+  }
+}
