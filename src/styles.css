@@ -245,6 +245,17 @@ html, body, .card-floating, .tap-scale, [class*="bg-"], [class*="text-"], [class
   background-size: 400% 400%;
   animation: gradient-shift 18s ease infinite;
 }
+.theme-night .animated-bg {
+  background: linear-gradient(135deg,
+    oklch(0.18 0.06 265),
+    oklch(0.22 0.1 245),
+    oklch(0.2 0.08 255),
+    oklch(0.24 0.12 235),
+    oklch(0.19 0.07 260)
+  );
+  background-size: 400% 400%;
+  animation: gradient-shift 18s ease infinite;
+}
 
 @keyframes wave-slide {
   0% { transform: translateX(0); }
