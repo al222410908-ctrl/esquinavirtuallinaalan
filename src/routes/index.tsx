@@ -155,30 +155,64 @@ function PlaylistColumn({
   songs: Song[];
 }) {
   return (
-    <div className="card-floating p-4">
+    <div className="card-floating p-4 glow-pulse">
       <p className="text-sm font-semibold mb-3 flex items-center gap-2">
-        <span>{title}</span> <span>{emoji}</span>
+        <span className="bounce-soft inline-block">{emoji}</span>
+        <span>{title}</span>
+        <Equalizer />
       </p>
       <ul className="space-y-2">
-        {songs.map((s) => (
-          <li key={s.title}>
+        {songs.map((s, idx) => (
+          <li
+            key={s.title}
+            className="animate-fade-up"
+            style={{ animationDelay: `${0.1 * idx + 0.1}s` }}
+          >
             <a
               href={s.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="tap-scale flex items-center gap-3 rounded-xl bg-secondary/60 hover:bg-secondary px-3 py-2.5 transition-colors"
+              className="tap-scale group flex items-center gap-3 rounded-xl bg-secondary/60 hover:bg-secondary px-3 py-2.5 transition-colors"
             >
-              <span className="w-8 h-8 rounded-lg bg-primary/10 text-primary flex items-center justify-center shrink-0">
-                <Music2 size={15} />
+              <span className="relative w-9 h-9 rounded-lg bg-primary/10 text-primary flex items-center justify-center shrink-0 overflow-hidden">
+                <Music2 size={15} className="group-hover:scale-110 transition-transform" />
+                <span
+                  className="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity"
+                  style={{
+                    background:
+                      "radial-gradient(circle at center, oklch(0.68 0.14 18 / 0.25), transparent 70%)",
+                  }}
+                />
               </span>
               <span className="min-w-0 flex-1">
                 <span className="block text-sm font-medium truncate">{s.title}</span>
                 <span className="block text-xs text-muted-foreground truncate">{s.artist}</span>
               </span>
+              <Equalizer compact />
             </a>
           </li>
         ))}
       </ul>
     </div>
+  );
+}
+
+function Equalizer({ compact = false }: { compact?: boolean }) {
+  const bars = compact ? 3 : 4;
+  const h = compact ? 12 : 14;
+  return (
+    <span className="inline-flex items-end gap-[2px]" style={{ height: h }}>
+      {Array.from({ length: bars }).map((_, i) => (
+        <span
+          key={i}
+          className="eq-bar w-[3px] rounded-full bg-primary/70"
+          style={{
+            height: "100%",
+            animationDelay: `${i * 0.15}s`,
+            animationDuration: `${0.7 + (i % 3) * 0.15}s`,
+          }}
+        />
+      ))}
+    </span>
   );
 }
