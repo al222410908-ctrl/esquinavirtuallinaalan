@@ -126,7 +126,7 @@ export function AndaleLinaGame() {
       <div className="text-center mb-4">
         <h2 className="text-2xl font-bold shimmer-text mb-1">ándale Lina</h2>
         <p className="text-sm text-muted-foreground italic">
-          pierde para q digas q si
+          si te gano vamos a nuestro lugar seguro?
         </p>
       </div>
 

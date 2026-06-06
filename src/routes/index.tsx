@@ -12,7 +12,8 @@ import { AndaleLinaGame } from "@/components/AndaleLinaGame";
 // ============================================================
 const ANNIVERSARY_DATE = "2025-05-15";
 // 📍 Y EL ENLACE DE GOOGLE MAPS DE NUESTRO RINCÓN
-const MAP_URL = "https://maps.app.goo.gl/eHkTKfoDuWmcNBGe9";
+const CONOCIMOS_URL = "https://maps.app.goo.gl/MgRW1BXQxDDgBVqr7";
+const LUGAR_SEGURO_URL = "https://maps.app.goo.gl/zPZVTwJB9rdPYqnC7";
 // ============================================================
 
 type Song = { title: string; artist: string; youtubeId: string };
@@ -101,32 +102,57 @@ function Index() {
           </div>
         </header>
 
-        {/* MAP CARD */}
-        <a
-          href={MAP_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="tap-scale card-floating block p-5 animate-fade-up hover:shadow-[var(--shadow-soft)]"
-          style={{
-            animationDelay: "0.35s",
-            background:
-              "linear-gradient(135deg, color-mix(in oklab, var(--blush) 80%, white), var(--cream))",
-          }}
-        >
-          <div className="flex items-center gap-4">
-            <div className="w-14 h-14 rounded-2xl flex items-center justify-center bg-primary text-primary-foreground shadow-[var(--shadow-soft)] float" style={{ animationDuration: "5s" }}>
-              <MapPin size={26} />
+        {/* MAP CARDS */}
+        <div className="space-y-4 animate-fade-up" style={{ animationDelay: "0.35s" }}>
+          {/* DONDE NOS CONOCIMOS */}
+          <a
+            href={CONOCIMOS_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="tap-scale card-floating block p-5 hover:shadow-[var(--shadow-soft)]"
+            style={{
+              background:
+                "linear-gradient(135deg, color-mix(in oklab, var(--blush) 80%, white), var(--cream))",
+            }}
+          >
+            <div className="flex items-center gap-4">
+              <div className="w-14 h-14 rounded-2xl flex items-center justify-center bg-primary text-primary-foreground shadow-[var(--shadow-soft)] float" style={{ animationDuration: "5s" }}>
+                <MapPin size={26} />
+              </div>
+              <div className="flex-1">
+                <p className="text-xs uppercase tracking-wider text-muted-foreground">Ir al mapa</p>
+                <p className="text-lg font-semibold">📍 Donde nos conocimos</p>
+              </div>
+              <span className="text-2xl text-primary float" style={{ animationDuration: "3s" }}>→</span>
             </div>
-            <div className="flex-1">
-              <p className="text-xs uppercase tracking-wider text-muted-foreground">Ir al mapa</p>
-              <p className="text-lg font-semibold">📍 Nuestro rincón especial</p>
+          </a>
+
+          {/* NUESTRO LUGAR SEGURO */}
+          <a
+            href={LUGAR_SEGURO_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="tap-scale card-floating block p-5 hover:shadow-[var(--shadow-soft)]"
+            style={{
+              background:
+                "linear-gradient(135deg, color-mix(in oklab, var(--cherry) 20%, white), var(--cream))",
+            }}
+          >
+            <div className="flex items-center gap-4">
+              <div className="w-14 h-14 rounded-2xl flex items-center justify-center bg-primary text-primary-foreground shadow-[var(--shadow-soft)] float" style={{ animationDuration: "5s" }}>
+                <MapPin size={26} />
+              </div>
+              <div className="flex-1">
+                <p className="text-xs uppercase tracking-wider text-muted-foreground">vamosh muajaja</p>
+                <p className="text-lg font-semibold">📍 Nuestro lugar seguro</p>
+              </div>
+              <span className="text-2xl text-primary float" style={{ animationDuration: "3s" }}>→</span>
             </div>
-            <span className="text-2xl text-primary float" style={{ animationDuration: "3s" }}>→</span>
-          </div>
-        </a>
+          </a>
+        </div>
 
         {/* PLAYLIST */}
-        <section className="animate-fade-up" style={{ animationDelay: "0.45s" }}>
+        <section className="animate-fade-up" style={{ animationDelay: "0.5s" }}>
           <h2 className="text-2xl mb-3 px-1">Nuestra Playlist</h2>
           <div className="grid grid-cols-1 gap-4">
             <PlaylistColumn title="De mí para ti" emoji="❤️" songs={SONGS_FOR_HER} />
@@ -135,16 +161,16 @@ function Index() {
         </section>
 
         {/* SUNDAY PLAN */}
-        <div className="animate-fade-up" style={{ animationDelay: "0.55s" }}>
+        <div className="animate-fade-up" style={{ animationDelay: "0.6s" }}>
           <SundayPlan />
         </div>
 
         {/* ANDALE LINA GAME */}
-        <div className="animate-fade-up" style={{ animationDelay: "0.65s" }}>
+        <div className="animate-fade-up" style={{ animationDelay: "0.7s" }}>
           <AndaleLinaGame />
         </div>
 
-        <footer className="text-center text-xs text-muted-foreground pt-4 animate-fade-up" style={{ animationDelay: "0.7s" }}>
+        <footer className="text-center text-xs text-muted-foreground pt-4 animate-fade-up" style={{ animationDelay: "0.75s" }}>
           Hecho con <Heart size={12} className="inline fill-primary text-primary animate-heartbeat" /> solo para nosotros
         </footer>
       </main>
