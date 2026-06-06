@@ -61,6 +61,7 @@ function Index() {
   return (
     <>
       <AnimatedBackground />
+      <ThemeToggle />
       <main className="relative mx-auto max-w-md px-5 pt-10 pb-16 space-y-8">
         {/* HEADER */}
         <header className="text-center">
