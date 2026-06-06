@@ -4,6 +4,7 @@ import { MapPin, Music2, Heart } from "lucide-react";
 import couplePhoto from "@/assets/couple.jpg";
 import { SundayPlan } from "@/components/SundayPlan";
 import { AnimatedBackground } from "@/components/AnimatedBackground";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 // ============================================================
 // 💖 EDITA AQUÍ TU FECHA DE ANIVERSARIO (YYYY-MM-DD)
