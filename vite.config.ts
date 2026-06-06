@@ -12,4 +12,11 @@ export default defineConfig({
     // nitro/vite builds from this
     server: { entry: "server" },
   },
+  vite: {
+    base: '/esquinavirtuallinaalan/',
+    build: {
+      outDir: 'dist/client',
+      emptyOutDir: true,
+    },
+  },
 });
